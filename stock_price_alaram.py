@@ -23,13 +23,6 @@ Eg:/setreminder [company symbol] [highest price value] [lowest price value]
 Eg:/findticker [company name]
 /findticker APPLE""")
 
-def findticker(update,context): # define a function for the companyticker command
-     company_name = context.args[0]
-     data = pd.read_html(f'https://finance.yahoo.com/quote/{company_name}')[1]
-     ticker = data.at[1,'Ticker']
-     tickers = ticker(company_name)
-     update.message.reply_text(f"The {company_name} company ticker symbol{tickers}")
-
 def getprice(update,context): # define a function for the getstockprice command
      ticker=context.args[0]
      msg=f'https://finance.yahoo.com/quote/{ticker}'
@@ -57,11 +50,5 @@ dispatcher.add_handler(telegram.ext.CommandHandler("start",start)) # handlers fo
 dispatcher.add_handler(telegram.ext.CommandHandler("help",help)) # handlers for the help commands
 dispatcher.add_handler(telegram.ext.CommandHandler("setreminder",setreminder)) # handlers for the setreminder commands
 dispatcher.add_handler(telegram.ext.CommandHandler("getprice",getprice)) # handlers for the getstockprice commands
-dispatcher.add_handler(telegram.ext.CommandHandler("findticker",findticker))
 updater.start_polling() # start the bot
 updater.idle() # wait for the bot to stop
-
-'''This is a python function that takes in three arguments - ticker, upper, and lower. The function then sets the upper and lower limits for the stock price. If the stock price goes above the upper limit, the function will send a message to the user telling them to sell the stock. If the stock price goes below the lower limit, the function will send a message to the user telling them to buy the stock.'''
-'''
-The code is adding handlers for different commands that the user can enter. The commands are "start", "help", "setreminder", "getprice", and "findticker". The code is also setting up a polling mechanism so that the bot can listen for incoming messages from the user.'''
-'''The fifth line adds a handler for the findticker command. This means that when the bot receives a message with the text '/findticker', the 'findticker' function will be called.'''
