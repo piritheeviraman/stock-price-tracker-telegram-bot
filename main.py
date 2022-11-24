@@ -4,7 +4,7 @@ import pandas_datareader as pdr  #This line imports the pandas_datareader librar
 import time
 import pandas as pd
 
-updater = telegram.ext.Updater('5624094353:AAEiyRgPpAPStBJ0Ao5vL-RoI7AcLYhl4ig', use_context=True) # create an object of class Updater 
+updater = telegram.ext.Updater('Telegram BOT API', use_context=True) # create an object of class Updater 
 dispatcher=updater.dispatcher # create a dispatcher object
 
 def start(update,context): # define a function for the start command
