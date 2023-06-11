@@ -1,5 +1,6 @@
 import telebot
 import time
+import pandas_datareader as pdr
 import re
 import yfinance as yf
 
@@ -72,10 +73,10 @@ def setreminder(update):
 
                 if upper_limit < last_price:
                     bot.send_message(update.chat.id, f"{ticker} has reached a price of {last_price:.2f}. You might want to sell {msg}")
-                    time.sleep(60)
+                    time.sleep(30)
                 elif lower_limit > last_price:
                     bot.send_message(update.chat.id, f"{ticker} has reached a price of {last_price:.2f}. You might want to buy {msg}")
-                    time.sleep(60)
+                    time.sleep(30)
                 else:
                     bot.send_message(update.chat.id, f"A price alert has been set for {ticker}. You will be notified when the price reaches {upper_limit:.2f} or {lower_limit:.2f}.")
         else:
