@@ -42,7 +42,8 @@ def getprice(update):
             if data.empty:
                 bot.send_message(update.chat.id, f"No data available for {ticker}.")
             else:
-                last_price = data["Adj Close"].iloc[-1]
+                last_price_series = data["Close"].iloc[0]
+                last_price = float(last_price_series.iloc[0])
                 bot.send_message(update.chat.id, f"The current price of {ticker} is {last_price:.2f} {msg}")
         else:
             bot.send_message(update.chat.id, "Invalid command format. Please use /getprice [symbol] to get the current price of a stock.")
@@ -65,7 +66,8 @@ def setreminder(update):
             if data.empty:
                 bot.send_message(update.chat.id, f"No data available for {ticker}.")
             else:
-                last_price = data["Adj Close"].iloc[-1]
+                last_price_series = data["Close"].iloc[0]
+                last_price = float(last_price_series.iloc[0])
                 # Store the reminder data in the dictionary
                 if user_id not in REMINDERS:
                     REMINDERS[user_id] = {}
